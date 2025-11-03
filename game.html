@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Barisan & Deret Aritmetika</title>
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <header>
+        <h1>Game Barisan & Deret Aritmetika</h1>
+        <button id="back-home">Kembali ke Beranda</button>
+    </header>
+
+    <main>
+        <div id="start-screen">
+            <button id="start-btn">MULAI</button>
+        </div>
+
+        <div id="quiz-container" class="hide">
+            <div id="question-container">
+                <p id="question"></p>
+                <div id="answer-buttons" class="btn-grid">
+                    <!-- Jawaban muncul di sini -->
+                </div>
+            </div>
+            <button id="next-btn" class="hide">Soal Berikutnya</button>
+        </div>
+    </main>
+
+    <audio id="bg-music" src="assets/audio/music.mp3" loop></audio>
+
+    <script src="game.js"></script>
+</body>
+</html>
+
+

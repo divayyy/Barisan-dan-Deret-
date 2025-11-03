@@ -1,0 +1,102 @@
+/* ===== Global Rumus & Contoh ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Background halaman */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Tombol Kembali ke Beranda */
+.btn-back {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 12px 30px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+.btn-back:hover {
+    background-color: #0056b3;
+}
+
+/* Header */
+header {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+header img {
+    width: 100%;
+    height: 500px; /* header lebih besar */
+    object-fit: cover;
+}
+header .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+header .hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+header .hero .title {
+    font-size: 3.5em; /* lebih besar */
+    font-weight: bold;
+}
+header .hero .lead {
+    font-size: 1.4em;
+    max-width: 900px;
+    margin: 10px auto;
+}
+
+/* Rumus Section */
+.rumus-section {
+    padding: 50px 20px; /* lebih luas */
+    background-color: #e8f0fe; /* Warna sama seperti materi */
+}
+.container {
+    max-width: 1100px; /* container lebih lebar */
+    margin: 0 auto;
+}
+.rumus-card {
+    background-color: #fff;
+    padding: 30px; /* lebih besar */
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+.rumus-card h3 {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.rumus-card .formula {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.4em; /* lebih besar */
+    color: #d63384;
+    margin: 15px 0;
+}
+.rumus-card p {
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
