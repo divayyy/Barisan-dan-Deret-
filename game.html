@@ -3,37 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Barisan & Deret Aritmetika</title>
+    <title>Game Barisan & Deret Aritmetika 🎇</title>
     <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
-    <div class="overlay"></div>
+    <div id="game-container">
+        <h1>🎓 Game Barisan & Deret Aritmetika 🎆</h1>
+        <p id="score">Skor: 0</p>
 
-    <header>
-        <h1>Game Barisan & Deret Aritmetika</h1>
-        <button id="back-home">Kembali ke Beranda</button>
-    </header>
-
-    <main>
-        <div id="start-screen">
-            <button id="start-btn">MULAI</button>
+        <!-- Input nama -->
+        <div id="name-input-container">
+            <input type="text" id="player-name" placeholder="Masukkan namamu">
+            <button id="submit-name">OK</button>
         </div>
 
-        <div id="quiz-container" class="hide">
-            <div id="question-container">
-                <p id="question"></p>
-                <div id="answer-buttons" class="btn-grid">
-                    <!-- Jawaban muncul di sini -->
-                </div>
-            </div>
-            <button id="next-btn" class="hide">Soal Berikutnya</button>
+        <!-- Soal -->
+        <div id="question-card">
+            <p id="question">Klik mulai untuk memulai game!</p>
         </div>
-    </main>
 
-    <audio id="bg-music" src="assets/audio/music.mp3" loop></audio>
+        <!-- Jawaban -->
+        <div id="answer-buttons" class="btn-container"></div>
+
+        <!-- Tombol -->
+        <div class="buttons-bottom">
+            <button id="start-btn" style="display:none;">Mulai Game</button>
+            <button id="back-btn" onclick="location.href='index.html'">Kembali ke Index</button>
+        </div>
+    </div>
+
+    <!-- Audio -->
+    <audio id="correct-sound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+    <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
 
     <script src="game.js"></script>
 </body>
 </html>
-
-

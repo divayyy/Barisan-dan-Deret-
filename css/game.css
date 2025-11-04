@@ -1,111 +1,108 @@
 body {
-    font-family: 'Georgia', serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: url('../assets/images/image5.jpg') no-repeat center center fixed;
+    background-image: url('../assets/images/image5.jpg');
     background-size: cover;
-    color: #fff;
-    position: relative;
-}
-
-.overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(26, 35, 126, 0.7); /* overlay biru tua */
-    z-index: 0;
-}
-
-header {
+    background-position: center;
+    color: white;
     text-align: center;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
 }
 
-header h1 {
-    font-size: 2.2em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#back-home {
-    padding: 10px 20px;
-    font-weight: bold;
-    font-size: 1em;
-    margin-top: 10px;
-    background-color: #003366;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    position: relative;
-}
-
-#start-btn {
-    padding: 15px 40px;
-    font-size: 1.5em;
-    font-weight: bold;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.hide { display: none; }
-
-#question-container {
-    margin-top: 30px;
-    max-width: 700px;
-    text-align: left;
+#game-container {
     background-color: rgba(0,0,0,0.6);
-    padding: 20px;
-    border-radius: 12px;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 0 20px #ffdd57;
 }
 
-#question {
-    font-weight: bold;
-    font-size: 1.3em;
+h1 {
+    font-size: 2em;
     margin-bottom: 20px;
+    color: #ffdd57;
 }
 
-.btn-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.btn-grid button {
+#name-input-container input {
     padding: 12px;
-    font-size: 1em;
-    font-weight: bold;
-    border-radius: 8px;
+    font-size: 18px;
+    border-radius: 10px;
     border: none;
-    cursor: pointer;
-    background-color: #1a237e;
-    color: #fff;
-    text-align: left;
+    margin-right: 10px;
 }
 
-.btn-grid button.correct { background-color: #4caf50; }
-.btn-grid button.wrong { background-color: #f44336; }
-
-#next-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-weight: bold;
-    font-size: 1em;
-    border-radius: 8px;
+#name-input-container button {
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #ffdd57;
+    color: black;
+    font-weight: bold;
+}
+
+#question-card {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px #fff;
+    font-size: 1.5em;
+    color: #ffdd57;
+}
+
+button {
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 12px;
+    border: none;
+    transition: transform 0.2s, background-color 0.2s;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #ffcc00;
+    color: black;
+}
+
+.correct {
+    background-color: #4caf50;
+    color: white;
+}
+
+.wrong {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buttons-bottom {
+    margin-top: 10px;
+}
+
+/* Efek konfeti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    opacity: 0.7;
+    border-radius: 50%;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
 }
