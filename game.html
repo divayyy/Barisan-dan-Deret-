@@ -3,38 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Barisan & Deret Aritmetika 🎇</title>
-    <link rel="stylesheet" href="css/game.css">
+    <title>Arithmetic Race: Barisan & Deret Aritmetika</title>
+    <link rel="stylesheet" href="css/game.css"> 
 </head>
 <body>
-    <div id="game-container">
-        <h1>🎓 Game Barisan & Deret Aritmetika 🎆</h1>
-        <p id="score">Skor: 0</p>
 
-        <!-- Input nama -->
-        <div id="name-input-container">
-            <input type="text" id="player-name" placeholder="Masukkan nama kamu">
-            <button id="submit-name">OK</button>
+    <div id="name-input-container">
+        <h1>Arithmetic Race 🎆</h1>
+        <p>Masukkan namamu untuk memulai tantangan Arithmetic Race:</p>
+        <input type="text" id="player-name-input" placeholder="Ketik nama Anda...">
+        <button id="submit-name-btn">Mulai Tantangan!</button>
+        
+        <button id="home-btn-start" class="control-btn" style="margin-top: 15px;">🏠 Beranda</button>
+    </div>
+
+    <div id="game-board" style="display: none;">
+        <h1 class="game-title">Arithmetic Race</h1>
+        <p class="subtitle">(BARISAN & DERET ARITMETIKA)</p>
+        
+        <div id="challenge-display" class="challenge-card">
+            <h2 id="challenge-title">📜 Tantangan Arithmetic Race!</h2>
+            <p id="challenge-question">Klik <strong>🎲 Kubus Soal</strong> untuk mendapatkan tantangan pertamamu!</p>
+            <button id="check-answer-btn" style="display:none;">✅ Cek Jawaban</button>
+        </div>
+        
+        <div class="main-content">
+            <div class="sequence-area">
+                
+                <div class="row">
+                    <div class="square term-box">
+                        <input type="number" class="box-input" id="U1" data-type="term" placeholder="a">
+                    </div>
+                    <div class="operator">+</div>
+                    <div class="square diff-box">
+                        <input type="number" class="box-input" id="B1" data-type="diff" placeholder="b">
+                    </div>
+                    <div class="operator">→</div>
+                    <div class="square term-box">
+                        <input type="number" class="box-input" id="U2" data-type="term" placeholder="U₂">
+                    </div>
+                    <div class="operator">+</div>
+                    <div class="square diff-box">
+                        <input type="number" class="box-input" id="B2" data-type="diff" placeholder="b">
+                    </div>
+                    <div class="operator">→</div>
+                    <div class="square term-box">
+                        <input type="number" class="box-input" id="U3" data-type="term" placeholder="U₃">
+                    </div>
+                </div>
+                
+                
+                <div class="row controls-and-info-row">
+                    <div class="square small-box" id="kubus-soal" title="Klik untuk tantangan baru!">
+                        <p>🎲</p>
+                        <p>Kubus Soal</p>
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="square term-box">
+                        <input type="number" class="box-input" id="U4" data-type="term" placeholder="U₄">
+                    </div>
+                    <div class="operator">+</div>
+                    <div class="square diff-box">
+                        <input type="number" class="box-input" id="B3" data-type="diff" placeholder="b">
+                    </div>
+                    <div class="operator">→</div>
+                    <div class="square term-box">
+                        <input type="number" class="box-input" id="U5" data-type="term" placeholder="U₅">
+                    </div>
+                    <div class="operator">+</div>
+                    <div class="square diff-box">
+                        <input type="number" class="box-input" id="B4" data-type="diff" placeholder="b">
+                    </div>
+                    <div class="operator">→</div>
+                    <div class="square term-box">
+                        <input type="number" class="box-input" id="U6" data-type="term" placeholder="U₆">
+                    </div>
+                </div>
+            </div>
+
+            <div class="formula-card-area">
+                <div class="formula-card">
+                    <h2>Kartu Rumus Suku (U)</h2>
+                    <p>U<sub>n</sub> = a + (n-1)b</p>
+                </div>
+                <div class="formula-card">
+                    <h2>Kartu Rumus Deret (S)</h2>
+                    <p>S<sub>n</sub> = n/2 (a + U<sub>n</sub>)</p>
+                    <p>S<sub>n</sub> = n/2 (2a + (n-1)b)</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Soal -->
-        <div id="question-card">
-            <p id="question">Klik mulai untuk memulai game!</p>
+        <div class="controls-area">
+            <button id="reset-btn" class="control-btn" style="background-color: #ffc107; color: #333; box-shadow: 0 5px #ff9800;">🔄 Reset Papan</button>
+            <div id="player-score">Skor: 0</div>
+            <button id="home-btn-game" class="control-btn">🏠 Beranda</button>
         </div>
-
-        <!-- Jawaban -->
-        <div id="answer-buttons" class="btn-container"></div>
-
-        <!-- Tombol -->
-        <div class="buttons-bottom">
-            <button id="start-btn" style="display:none;">Mulai Game</button>
-            <button id="back-btn" onclick="location.href='index.html'">Kembali</button>
+    </div>
+    
+    <div id="custom-confirm-modal" class="modal">
+        <div class="modal-content">
+            <p id="confirm-message">Yakin ingin kembali ke Beranda?</p>
+            <div class="modal-buttons">
+                <button id="confirm-yes-btn" class="modal-btn yes">Ya</button>
+                <button id="confirm-no-btn" class="modal-btn no">Tidak</button>
+            </div>
         </div>
     </div>
 
-    <!-- Audio -->
-    <audio id="correct-sound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+
     <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+    <audio id="correct-sound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+    <audio id="fail-sound" src="https://www.soundjay.com/buttons/beep-07.mp3"></audio>
 
     <script src="game.js"></script>
 </body>

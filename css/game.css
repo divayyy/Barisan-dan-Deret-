@@ -1,97 +1,404 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
     margin: 0;
-    padding: 0;
-    background-image: url('../assets/images/image5.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-}
-
-#game-container {
-    background-color: rgba(0,0,0,0.6);
-    padding: 30px;
-    margin: 50px auto;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 700px;
-    box-shadow: 0 0 20px #ffdd57;
-}
-
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #ffdd57;
-}
-
-#name-input-container input {
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: none;
-    margin-right: 10px;
-}
-
-#name-input-container button {
-    padding: 12px 20px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: #ffdd57;
-    color: black;
-    font-weight: bold;
-}
-
-#question-card {
-    background-color: rgba(255, 255, 255, 0.2);
     padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 15px #fff;
-    font-size: 1.5em;
-    color: #ffdd57;
+    background-color: #f0f8ff; /* Biru langit */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    transition: background-color 0.5s;
+    position: relative; /* Penting untuk confetti */
 }
 
-button {
-    padding: 15px 25px;
-    margin: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 12px;
-    border: none;
-    transition: transform 0.2s, background-color 0.2s;
+/* ---------------------- MODAL KONFIRMASI KUSTOM ---------------------- */
+.modal {
+    display: none; /* Disembunyikan secara default */
+    position: fixed;
+    z-index: 100; /* Pastikan di atas semua elemen */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); 
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff8e1;
+    padding: 30px;
+    border: 5px solid #ffcc80;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    max-width: 90%;
+}
+
+#confirm-message {
+    font-size: 1.5em;
+    color: #444;
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
-button:hover {
-    transform: scale(1.1);
-    background-color: #ffcc00;
-    color: black;
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-.correct {
+.modal-btn {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-btn.yes {
     background-color: #4caf50;
     color: white;
 }
-
-.wrong {
+.modal-btn.no {
     background-color: #f44336;
     color: white;
 }
+.modal-btn.yes:hover { background-color: #45a049; }
+.modal-btn.no:hover { background-color: #e53935; }
 
-.btn-container {
+
+/* ---------------------- HALAMAN AWAL ---------------------- */
+#name-input-container {
+    background-color: #ffe0b2; 
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 5px solid #ff9800;
     display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    animation: fadeIn 1s;
+}
+
+#name-input-container h1 {
+    font-size: 3em;
+    color: #e65100; 
+    text-shadow: 3px 3px #fff;
+    margin: 0;
+}
+
+#player-name-input {
+    font-size: 1.4em;
+    padding: 15px;
+    border-radius: 12px;
+    border: 3px solid #ccc;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+#submit-name-btn {
+    font-size: 1.5em;
+    padding: 15px 25px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    background-color: #4caf50; 
+    color: white;
+    box-shadow: 0 5px #388e3c;
+    transition: all 0.1s;
+}
+#submit-name-btn:active {
+    box-shadow: 0 2px #388e3c;
+    transform: translateY(3px);
+}
+
+#home-btn-start { 
+    background-color: #f0ad4e !important; 
+    color: #333 !important; 
+    box-shadow: 0 5px #eea236 !important;
+    font-size: 1.5em;
+    padding: 15px 25px;
+}
+#home-btn-start:active {
+    box-shadow: 0 2px #eea236 !important;
+    transform: translateY(3px);
+}
+
+
+/* ---------------------- PAPAN GAME ---------------------- */
+#game-board {
+    background-color: #add8e6; 
+    border: 10px solid #4682b4; 
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 1000px;
+    width: 95%;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-title {
+    font-size: 3.5em;
+    color: #ff4500; 
+    text-shadow: 4px 4px #000;
+}
+.subtitle {
+    font-size: 1.5em;
+    color: #36454F;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
     flex-wrap: wrap;
+}
+
+.sequence-area {
+    flex: 2;
+    background-color: #ffffa0; 
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 3px dashed #daa520;
+}
+
+.row {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; 
 }
 
-.buttons-bottom {
-    margin-top: 10px;
+/* BARIS PERBAIKAN: Kontrol Kubus Soal/Gulungan */
+.controls-and-info-row {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 50px; 
+    margin: 10px 0; 
 }
 
-/* Efek konfeti */
+
+/* Kotak Suku/Beda */
+.square {
+    width: 70px;
+    height: 70px;
+    border: 3px solid #6a5acd;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    transition: transform 0.2s;
+}
+
+.term-box { background-color: #87cefa; border-color: #4682b4; } 
+.diff-box { background-color: #ffa07a; border-color: #ff6347; } 
+
+/* Input di dalam kotak */
+.box-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    -moz-appearance: textfield;
+    transition: background-color 0.5s, color 0.5s;
+}
+.box-input::-webkit-outer-spin-button,
+.box-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Feedback Visual */
+.box-input.correct {
+    background-color: #4caf50; 
+    color: white;
+    animation: pulseCorrect 0.5s;
+}
+.box-input.wrong {
+    background-color: #f44336; 
+    color: white;
+    animation: shake 0.5s;
+}
+@keyframes pulseCorrect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.operator { font-size: 2em; font-weight: bold; color: #4682b4; }
+
+/* Kubus Interaktif */
+.small-box {
+    width: 90px;
+    height: 90px;
+    background-color: #98fb98;
+    border-color: #3cb371;
+    font-size: 1em;
+    display: flex; /* Tambahkan display flex */
+    flex-direction: column; /* Ubah orientasi ke kolom */
+    justify-content: center; /* Pusatkan konten vertikal */
+    align-items: center; /* Pusatkan konten horizontal */
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.small-box:hover { transform: scale(1.1); box-shadow: 0 0 10px #3cb371; }
+
+.small-box p {
+    margin: 0;
+    line-height: 1.1; 
+}
+.small-box p:last-child {
+    font-size: 0.75em; 
+    font-weight: bold;
+}
+
+#kubus-soal { background-color: #ff6347; border-color: #dc143c; color: white; }
+#kubus-soal p:first-child { font-size: 2em; }
+#kubus-gulungan { background-color: #daa520; border-color: #b8860b; color: white; }
+#kubus-gulungan p:first-child { font-size: 2em; }
+
+/* ---------------------- GULUNGAN SOAL (CHALLENGE) ---------------------- */
+.challenge-card {
+    text-align: center;
+    background-color: #fffacd; 
+    border: 5px solid #ffeb3b;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.5s;
+}
+
+#challenge-title {
+    color: #8b4513;
+    font-size: 1.8em;
+    margin-top: 0;
+}
+
+#challenge-question {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#check-answer-btn {
+    padding: 15px 35px;
+    font-size: 1.5em !important;
+    font-weight: bold;
+    background-color: #00bcd4 !important; 
+    color: white !important;
+    border-radius: 10px !important;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px #008ba3;
+    transition: all 0.1s;
+    font-family: 'Comic Sans MS', cursive;
+}
+#check-answer-btn:active {
+    box-shadow: 0 1px #008ba3;
+    transform: translateY(3px);
+}
+
+/* ---------------------- KARTU RUMUS ---------------------- */
+.formula-card-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formula-card {
+    background-color: #ffe4b5;
+    border: 3px solid #cd853f;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.formula-card h2 {
+    color: #a0522d;
+    font-size: 1.8em;
+    margin-top: 0;
+}
+
+.formula-card p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #555;
+    margin: 5px 0;
+}
+
+
+/* ---------------------- KONTROL & SKOR ---------------------- */
+.controls-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.control-btn {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#reset-btn:hover { background-color: #e0a800; }
+
+#home-btn-game { 
+    background-color: #6c757d; 
+    color: white; 
+    box-shadow: 0 5px #5a6268; 
+}
+#home-btn-game:hover { 
+    background-color: #5a6268; 
+}
+
+#player-score {
+    background-color: #fffacd;
+    border: 3px solid #daa520;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #8b4513;
+}
+
+/* ---------------------- EFEK KONFETI ---------------------- */
 .confetti {
     position: fixed;
     width: 10px;
@@ -100,9 +407,31 @@ button:hover {
     opacity: 0.7;
     border-radius: 50%;
     animation: fall linear forwards;
+    z-index: 20;
 }
-
 @keyframes fall {
     0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+    100% { transform: translateY(800px) rotate(720deg); opacity: 0; }
+}
+
+/* ---------------------- RESPONSIVE ---------------------- */
+@media (max-width: 768px) {
+    .main-content { flex-direction: column; }
+    .sequence-area, .formula-card-area { width: 100%; box-sizing: border-box; }
+    .game-title { font-size: 2.5em; }
+    .square { width: 45px; height: 45px; } 
+    .box-input { font-size: 1.0em; }
+    
+    /* Tombol Kubus dan Info diperkecil agar pas */
+    .small-box { 
+        width: 60px; 
+        height: 60px;
+        font-size: 0.9em;
+    }
+    .small-box p:first-child { font-size: 1.5em; }
+    .controls-and-info-row { gap: 20px; }
+    
+    .controls-area { flex-wrap: wrap; }
+    .operator { font-size: 1.2em; }
+    .formula-card h2 { font-size: 1.5em; }
 }
